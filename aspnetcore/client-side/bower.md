@@ -1,5 +1,5 @@
 ---
-title: 管理 ASP.NET Core 中的 Bower 的客户端包
+title: 在ASP.NET Core中使用 Bower 管理客户端包
 author: rick-anderson
 description: 管理 Bower 的客户端包。
 ms.author: riande
@@ -13,7 +13,7 @@ ms.contentlocale: zh-CN
 ms.lasthandoff: 06/20/2018
 ms.locfileid: "36272512"
 ---
-# <a name="manage-client-side-packages-with-bower-in-aspnet-core"></a>管理 ASP.NET Core 中的 Bower 的客户端包
+# <a name="manage-client-side-packages-with-bower-in-aspnet-core"></a>在ASP.NET Core中使用 Bower 管理客户端包
 
 通过[Rick Anderson](https://twitter.com/RickAndMSFT)，[了米](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)，和[Scott Addie](https://scottaddie.com) 
 
@@ -22,15 +22,15 @@ ms.locfileid: "36272512"
 >
 > 与 Webpack yarn 是一个常用的替代项为其[迁移说明](https://bower.io/blog/2017/how-to-migrate-away-from-bower/)可用。 
 
-[Bower](https://bower.io/)调用自身"web 程序包管理器"。 内部.NET 生态系统，它将填入 void 留下的 NuGet 的无法传送静态内容的文件。 对于 ASP.NET Core 项目，这些静态文件，则所固有的客户端库，如[jQuery](http://jquery.com/)和[Bootstrap](http://getbootstrap.com/)。 对于.NET 库，你仍然使用[NuGet](https://www.nuget.org/)程序包管理器。
+[Bower](https://bower.io/)称自己为"web 程序包管理器"。在.NET生态系统中，它填补了NuGet无法提供静态内容文件所留下的空白。 对于 ASP.NET Core 项目，这些静态文件，则所固有的客户端库，如[jQuery](http://jquery.com/)和[Bootstrap](http://getbootstrap.com/)。 对于.NET 库，你仍然使用[NuGet](https://www.nuget.org/)程序包管理器。
 
-设置客户端的 ASP.NET Core 项目模板创建的新项目生成过程。 [jQuery](http://jquery.com/)和[Bootstrap](http://getbootstrap.com/)安装，并支持 Bower。
+使用ASP.NET Core项目模板创建的新项目设置了客户端构建过程。 [jQuery](http://jquery.com/)和[Bootstrap](http://getbootstrap.com/)默认安装，并支持 Bower。
 
 在列出客户端包*bower.json*文件。 ASP.NET Core 项目模板配置*bower.json* jQuery、 jQuery 验证与 Bootstrap。
 
-在本教程中，我们将添加对支持[字体出色](http://fontawesome.io)。 可以使用安装 bower 包**管理 Bower 包**UI 或手动在*bower.json*文件。
+在本教程中，我们将添加对支持[Font Awesome](http://fontawesome.io)。 可以使用安装 bower 包**管理 Bower 包**UI 或手动在*bower.json*文件。
 
-### <a name="installation-via-manage-bower-packages-ui"></a>通过管理 Bower 包 UI 的安装
+### <a name="installation-via-manage-bower-packages-ui"></a>通过Bower包管理界面的安装
 
 * 创建新的 ASP.NET Core Web 应用程序与**ASP.NET Core Web 应用程序 (.NET Core)** 模板。 选择**Web 应用程序**和**无身份验证**。
 
@@ -44,7 +44,7 @@ ms.locfileid: "36272512"
 
 ### <a name="manual-installation-in-bowerjson"></a>手动安装在 bower.json
 
-打开*bower.json*文件并添加到的依赖项的"字体出色"。 IntelliSense 会显示可用的包。 某个包被选中，将显示可用的版本。 下面的映像不较旧，并不会匹配你看到的内容。
+打开*bower.json*文件并添加到的依赖项的"Font Awesome"。 IntelliSense 会显示可用的包。 某个包被选中，将显示可用的版本。 下面的映像不较旧，并不会匹配你看到的内容。
 
 ![Bower 包资源管理器的智能感知](bower/_static/add-package.png)
 
@@ -62,9 +62,9 @@ Bower 使用[语义版本控制](http://semver.org/)来组织依赖关系。 语
 }
 ```
 
-在解决方案资源管理器搜索框中可用于查找并显示字体出色的包。
+在解决方案资源管理器搜索框中可用于查找并显示Font Awesome的包。
 
-打开*views/shared\_Layout.cshtml*文件并将字体出色的 CSS 文件添加到环境[标记帮助器](xref:mvc/views/tag-helpers/intro)为`Development`。 从解决方案资源管理器，将拖*字体 awesome.css*内`<environment names="Development">`元素。
+打开*views/shared\_Layout.cshtml*文件并将Font Awesome的 CSS 文件添加到环境[标记帮助器](xref:mvc/views/tag-helpers/intro)为`Development`。 从解决方案资源管理器，将拖*字体 awesome.css*内`<environment names="Development">`元素。
 
 [!code-html[](bower/sample/_Layout.cshtml?highlight=4&range=9-13)]
 
@@ -74,13 +74,13 @@ Bower 使用[语义版本控制](http://semver.org/)来组织依赖关系。 语
 
 [!code-html[](bower/sample/About.cshtml)]
 
-运行应用程序并导航到关于视图，以验证字体出色包正常运行。
+运行应用程序并导航到关于视图，以验证Font Awesome包正常运行。
 
 ## <a name="exploring-the-client-side-build-process"></a>浏览客户端生成过程
 
-大多数 ASP.NET Core 项目模板已配置为使用 Bower。 此下一个演练中创建空的 ASP.NET Core 项目启动，并手动添加每个部分，以便您可以如何在项目中使用 Bower 获取获得感觉。 你可以查看到的项目结构和运行时，输出会和每个配置更改会发生什么情况。
+大多数 ASP.NET Core 项目模板已配置为使用 Bower。 下一个演练以一个空的ASP.NET Core项目开始，并手动添加每个部分，这样您就可以了解Bower在项目中的使用方式。 您可以看到每次配置更改时项目结构和运行时输出会发生什么情況。
 
-将客户端生成过程用于 Bower 的常规步骤如下：
+在客户端使用Bower构建的一般步骤是：
 
 * 定义项目中使用的包。 <!-- once defined, you don't need to download them, VS does -->
 * 从 web 页面的引用包。
